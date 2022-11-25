@@ -1,0 +1,9 @@
+You must go to the top floor, take the key, make your way to the groundfloor and use the key.
+In order the commands are:
+
+use stairs up
+take key
+use stairs down
+use stairs down
+use stairs down
+use key

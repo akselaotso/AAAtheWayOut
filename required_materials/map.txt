@@ -1,0 +1,56 @@
+Key, paper key, exit and box change locations every round, however always on the same floor.
+The area consists of a building / tower with 4 floors top to bottom as follows:
+
+Floor 4:
+################
+#              #
+#              #
+#       K      #
+# D            #
+#              #
+#              #
+################
+You see:
+ D - Stairs down, You can use these stairs to go down.
+ K - Key, the key to your freedom
+
+Floor 3:
+################
+#              #
+#              #
+# U            #
+# D        B   #
+#              #
+#              #
+################
+You see:
+ D - Stairs down, You can use these stairs to go down.
+ B - Block, a block
+ U - Stairs up, You can use these stairs to go up.
+
+Floor 2:
+################
+#           P  #
+#              #
+# U            #
+# D            #
+#              #
+#              #
+################
+You see:
+ P - Paper Key, wait what key is this it looks like the key but it's paper
+ D - Stairs down, You can use these stairs to go down.
+ U - Stairs up, You can use these stairs to go up.
+
+Floor 1:
+################
+#              #
+#              #
+# U            #
+#              #
+#         E    #
+#              #
+################
+You see:
+ E - Exit, The exit! Finally! Maybe I could use a key here...
+ U - Stairs up, You can use these stairs to go up.

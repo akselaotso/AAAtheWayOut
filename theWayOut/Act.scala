@@ -16,4 +16,3 @@ class Act(command: String):
     case other       => None
 
 end Act
-
