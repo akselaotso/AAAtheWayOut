@@ -4,17 +4,19 @@ import scala.collection.mutable.Map
 
 class Player(startingRoom: Room):
   private var continue = true
+  private var hasExited = false
   private var myLocation = startingRoom
   private val myInventory = Map[String, Item]()
 
   def location = myLocation
+
+  def exited = hasExited
 
   def move(newRoom: Room) = myLocation = newRoom
 
   def continueGame = continue
 
   def exit() = continue = false
-
 
   def f[T](v: T) = v // type checker for distinguising Item and Stairs types in use() and take()
 
@@ -51,7 +53,7 @@ class Player(startingRoom: Room):
   def inventory =
     "Your inventory: \n "+ myInventory.toVector.map((i, j) => j).foldLeft("")((i, j) => i + s" ${j.toString.drop(4)} \n")
 
-  def use(item: String) = // using items - only stairs but still
+  def use(item: String) = // using items - stairs and keys
     if myLocation.contentMap.contains(item) then
       var temp = myLocation.contentMap(item)(0)
       f(temp) match
@@ -61,6 +63,13 @@ class Player(startingRoom: Room):
           else myLocation = myLocation.down
           s"You use the $item"
         case _ => s"Come on. Can't use that."
+    else if myInventory.contains(item) then
+      if myInventory(item).sign == "K" then
+        if myLocation.contentMap.contains("exit") then
+          hasExited = true
+          "You open the exit..." // stupid number of if statements to guarantee a unique response to every scenario
+        else "There is no exit here..."
+      else "You can't use that item."
     else s"Dude you clearly can't use that."
 
 end Player
