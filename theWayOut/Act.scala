@@ -11,6 +11,7 @@ class Act(command: String):
     case "use"       => Some(player.use(target))
     case "fight"     => Some(player.fight(target))
     case "take"      => Some(player.take(target))
+    case "read"      => Some(player.read(target))
     case "inventory" => Some(player.inventory)
     case "help"      => Some(player.help())
     case other       => None

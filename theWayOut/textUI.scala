@@ -8,7 +8,9 @@ object textUI extends App:
   runGame()
 
   def runGame() =
-    println("Welcome to theWayOut. The point is to escape the building (more like a tower but hey).")
+    println("Welcome to theWayOut. Your goal is to escape the  tower. Type 'help' for help. Try not to fight too much")
+    println("The exit is blocked by a combination lock, so you'll need to find a note with the combination.")
+    println("You're currently on the third floor.")
     while !game.end do
       player.location.drawRoom()
       turn()
@@ -16,7 +18,6 @@ object textUI extends App:
     if game.isWon then
       println("Congratulations. You won.")
     else println("You lost, sorry. Do try again, though!")
-
 
   def turn() =
     val command: String = readLine("Command: ")

@@ -1,9 +1,14 @@
-You must go to the top floor, take the key, make your way to the groundfloor and use the key.
+You must go to the top floor, take the note, make your way to the groundfloor and use the exit.
+The exit requires the 4 number combination which you can find by reading the note.
+
 In order the commands are:
 
 use stairs up
-take key
+take note
 use stairs down
 use stairs down
 use stairs down
-use key
+read note
+use exit
+
+type the numbers which read note returns and press enter

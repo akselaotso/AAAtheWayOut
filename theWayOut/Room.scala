@@ -16,9 +16,9 @@ class Room(x: Int, y: Int):
   private var lowerFloor: Room = null
 
   // setting up stairs for the room
-  private val StairsUp = Stairs("Stairs up", "U", "You can use these stairs to go up.", "up")
-  private val StairsDown = Stairs("Stairs down", "D", "You can use these stairs to go down.", "down")
-
+  private val StairsUp = Stairs("Stairs up", "U", "You can use these stairs to go up with 'use stairs up'.", "up")
+  private val StairsDown = Stairs("Stairs down", "D", "You can use these stairs to go down with 'use stairs down'.", "down")
+ 
   def locations: Vector[(Int, Int)] = contents.toVector.map(i => i(1)(1))
 
   def items: Vector[Item] = contents.toVector.map(i => i(1)(0))
@@ -39,10 +39,10 @@ class Room(x: Int, y: Int):
 
   def add(item: Item) = // adds the item to an empty location
     var rand = scala.util.Random
-    var newLoc = (rand.between(1, width - 1), rand.between(1, height - 1))
+    var newLoc = (rand.between(2, width - 1), rand.between(2, height - 1))
     if contents.nonEmpty then
       while locations.contains(newLoc) do
-        newLoc = (rand.between(1, width - 1), rand.between(1, height - 1))
+        newLoc = (rand.between(2, width - 1), rand.between(2, height - 1))
     contents.put(item.name.toLowerCase, (item, newLoc)) // each item's new location is ramdomized
 
   def remove(item: String) = contents.remove(item)

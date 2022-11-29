@@ -15,17 +15,19 @@ class Building(val x: Int, val y: Int):
   thirdFloor.setUp(fourthFloor)
   fourthFloor.setDown(thirdFloor)
 
+  private var code = scala.util.Random.between(1000, 9999)
+  player.setCode(code)
 
   private var Block = Item("Block", "B", "a block")
-  thirdFloor.add(Block) // the block is useless but the player can test out the take function
+  thirdFloor.add(Block) // the block is useless
 
-  private var Door = Exit("Exit", "E", "The exit! Finally! Maybe I could use a key here...")
+  private var Door = Exit("Exit", "E", "The exit! Finally! Looks like it requires a 4 number combination...")
   groundFloor.add(Door)
-  
-  private var Key = Item("Key", "K", "the key to your freedom")
-  fourthFloor.add(Key)
 
-  private var fakeKey = Item("Paper Key", "P", "wait what key is this it looks like the key but it's paper")
+  private var paper = Item("Note", "N", "A note... I should probably read it.")
+  fourthFloor.add(paper) // the paper key is also useless
+
+  private var fakeKey = Item("Paper Key", "P", "wait it's a key, but it's paper")
   secondFloor.add(fakeKey)
 
   def isWon: Boolean = player.exited
