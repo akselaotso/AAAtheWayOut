@@ -1,4 +1,4 @@
-Key, paper key, exit and box change locations every round, however always on the same floor.
+Note, paper key, exit and box change locations every round, however always on the same floor.
 The area consists of a building / tower with 4 floors top to bottom as follows:
 
 Floor 4:
@@ -11,8 +11,8 @@ Floor 4:
 #              #
 ################
 You see:
+ N - Note, A note... You should probably read it.
  D - Stairs down, You can use these stairs to go down.
- K - Key, the key to your freedom
 
 Floor 3:
 ################

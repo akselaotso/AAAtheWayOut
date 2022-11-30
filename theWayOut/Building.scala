@@ -24,7 +24,7 @@ class Building(val x: Int, val y: Int):
   private var Door = Exit("Exit", "E", "The exit! Finally! Looks like it requires a 4 number combination...")
   groundFloor.add(Door)
 
-  private var paper = Item("Note", "N", "A note... I should probably read it.")
+  private var paper = Item("Note", "N", "A note... You should probably read it.")
   fourthFloor.add(paper) // the paper key is also useless
 
   private var fakeKey = Item("Paper Key", "P", "wait it's a key, but it's paper")
