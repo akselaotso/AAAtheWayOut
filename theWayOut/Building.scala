@@ -1,6 +1,7 @@
 package theWayOut
 
 class Building(val x: Int, val y: Int):
+  // set up floors
   private val groundFloor = Room(x, y)
   private val secondFloor = Room(x, y)
   private val thirdFloor = Room(x, y)
@@ -8,6 +9,7 @@ class Building(val x: Int, val y: Int):
 
   val player = Player(thirdFloor)
 
+  // add upper and lower floors
   groundFloor.setUp(secondFloor)
   secondFloor.setDown(groundFloor)
   secondFloor.setUp(thirdFloor)
@@ -18,6 +20,7 @@ class Building(val x: Int, val y: Int):
   private var code = scala.util.Random.between(1000, 9999)
   player.setCode(code)
 
+  // add items to floors
   private var Block = Item("Block", "B", "a block")
   thirdFloor.add(Block) // the block is useless
 
@@ -30,6 +33,7 @@ class Building(val x: Int, val y: Int):
   private var fakeKey = Item("Paper Key", "P", "wait it's a key, but it's paper")
   secondFloor.add(fakeKey)
 
+  // win and end conditions for textUi.scala
   def isWon: Boolean = player.exited
 
   def end = isWon || !player.continueGame

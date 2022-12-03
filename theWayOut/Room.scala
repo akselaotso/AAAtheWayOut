@@ -22,12 +22,12 @@ class Room(x: Int, y: Int):
   private val character = Dude("You, the player", "@", "Just represents you being on this floor. No practical function and can't be controlled or used for anyhting.")
   contents.put(character.name.toLowerCase, (character, (8, 5)))
 
-  def locations: Vector[(Int, Int)] = contents.toVector.map(i => i(1)(1))
-  def items: Vector[Item] = contents.toVector.map(i => i(1)(0))
+  def locations: Vector[(Int, Int)] = contents.toVector.map(i => i(1)(1)) // returns all locations
+  def items: Vector[Item] = contents.toVector.map(i => i(1)(0)) // returns all items
   def contentMap = contents
-  def up = upperFloor.getOrElse(this)
-  def down = lowerFloor.getOrElse(this)
-  def remove(item: String) = contents.remove(item)
+  def up = upperFloor.getOrElse(this) // returns upper floor
+  def down = lowerFloor.getOrElse(this) // returns lower floor
+  def remove(item: String) = contents.remove(item) // removes item
 
   // used in building.scala to set upper and lower floors to all floors which have them
   def setUp(item: Room) =
@@ -38,7 +38,8 @@ class Room(x: Int, y: Int):
     lowerFloor = Some(item)
     contents.put(StairsDown.name.toLowerCase, (StairsDown, (3, 5)))
 
-  def add(item: Item) = // adds the item to an empty location
+  // adds the item to a random empty location
+  def add(item: Item) =
     var rand = scala.util.Random
     var newLoc = (rand.between(2, width - 1), rand.between(2, height - 1))
     if contents.nonEmpty then
@@ -47,6 +48,7 @@ class Room(x: Int, y: Int):
     contents.put(item.name.toLowerCase, (item, newLoc)) // each item's new location is ramdomized
 
 
+  // draws the room
   def drawRoom() =
     for row <- 1 to height do // for each square check if there should be something and print it row at a time
       var print = ""

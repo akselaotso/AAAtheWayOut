@@ -10,23 +10,23 @@ class Player(startingRoom: Room):
   private val myInventory = Map[String, Item]()
   private var myCode: Int = 0
 
-  def setCode(code: Int) = myCode = code
+  def setCode(code: Int) = myCode = code // used to set up the game, external so it can be crossreferenced in other files.
   def location = myLocation
   def exited = hasExited
   def move(newRoom: Room) = myLocation = newRoom
   def continueGame = continue
-  def f[T](v: T) = v // type checker for distinguising Item and Stairs types in use() and take()
 
   def exit() =
     continue = false
     "Exiting game."
 
-  // read the note. There are no other readable items.
+  // reads the note. There are no other readable items, hence the specifict conditions.
   def read(item: String) =
     if inventory.contains("Note") && item.toLowerCase == "note" then
       s"You read the note. It only contains 4 numbers: \n$myCode"
     else "Couldn't read that. Is the item in your inventory?"
 
+  // just prints out all the commands and their explanations
   def help(): String =
     "List of commands:  " +
       "\n exit - end the game. " +
@@ -48,10 +48,12 @@ class Player(startingRoom: Room):
     myInventory.remove(item)
     "Nice throw."
 
+  // take an item if the item is in the room and of a takeable type
   def take(item: String): String =
     if myLocation.contentMap.contains(item) then
       var temp = myLocation.contentMap(item)(0)
-      f(temp) match // first discard stairs and the exit as takeable items and then handle the rest of the cases
+      // first discard stairs and the exit as takeable items and then handle the rest of the cases. Using a match based on type
+      temp match
         case _: Dude => "What are your trying to do."
         case _: Stairs => "You obviously can't take that."
         case _: Exit => "You obviously can't take that."
@@ -62,7 +64,7 @@ class Player(startingRoom: Room):
         case null => "Can't take that."
     else s"Good try."
 
-  def inventory = // print the inventory in a easily legible manner
+  def inventory = // print the inventory in a legible manner
     "Your inventory: \n"+ myInventory.toVector.map((i, j) => j).foldLeft("")((i, j) => i + s" - ${j.toString.drop(4)} \n")
 
   def use(item: String) = // using items - stairs and exit
@@ -71,7 +73,8 @@ class Player(startingRoom: Room):
       temp = myLocation.contentMap(item)(0)
     else if myInventory.contains(item) then
       temp = myInventory(item)
-    f(temp) match // a separate case for everything.
+    // a separate case for everything, matching but based on the item's type. Easier to expand the system later.
+    temp match
       case _: Dude => "What are your trying to do."
       case _: Stairs => // when a player uses stairs check the direction and move the player
         if temp.sign == "U" then

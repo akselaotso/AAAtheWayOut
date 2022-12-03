@@ -1,6 +1,9 @@
 package theWayOut
 
 class Act(command: String):
+  // just prosesses the commands similarly to Adventure,
+  // except accepts commands with targets the names of which contain spaces
+
   private val commandText = command.trim.toLowerCase
   private val act = commandText.takeWhile( _ != ' ' )
   private val target = commandText.drop(act.length + 1)
