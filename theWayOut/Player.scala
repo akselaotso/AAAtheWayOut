@@ -44,9 +44,11 @@ class Player(startingRoom: Room):
 
   // place the item in question to a random location in the current room
   def toss(item: String): String =
-    myLocation.add(myInventory(item))
-    myInventory.remove(item)
-    "Nice throw."
+    if myInventory.contains(item) then
+      myLocation.add(myInventory(item))
+      myInventory.remove(item)
+      "Nice throw."
+    else "You can't toss that"
 
   // take an item if the item is in the room and of a takeable type
   def take(item: String): String =
